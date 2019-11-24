@@ -146,35 +146,37 @@ public class JavaFlix extends JFrame {
 				
 				String password = passwordField.getText();
 				String userName = textField.getText();
+				User.setVisible(true);
+				LogIn.setVisible(false);
 				
-				try {
-                    Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/javaFlix",
-                        "root", "xxxx");
-
-                    PreparedStatement st = (PreparedStatement) connection
-                        .prepareStatement("Select username, password from user where username=? and password=?");
-
-                    st.setString(1, userName);
-                    st.setString(2, password);
-                    ResultSet rs = st.executeQuery();
-                    
-                    if (rs.next()) {
-                       
-                        passwordField.setText(null);
-                        textField.setText(null);
-                        User.setVisible(true);
-                        LogIn.setVisible(false);
-                        
-                    } else {
-                    	
-                    	JOptionPane.showMessageDialog(null, "Invalid Login Credentials","Login Error", JOptionPane.ERROR_MESSAGE);
-                        passwordField.setText(null);
-                        textField.setText(null);
-                        
-                    }
-                } catch (SQLException sqlException) {
-                    sqlException.printStackTrace();
-                }
+//				try {
+//                    Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/javaFlix",
+//                        "root", "xxxx");
+//
+//                    PreparedStatement st = (PreparedStatement) connection
+//                        .prepareStatement("Select username, password from user where username=? and password=?");
+//
+//                    st.setString(1, userName);
+//                    st.setString(2, password);
+//                    ResultSet rs = st.executeQuery();
+//                    
+//                    if (rs.next()) {
+//                       
+//                        passwordField.setText(null);
+//                        textField.setText(null);
+//                        User.setVisible(true);
+//                        LogIn.setVisible(false);
+//                        
+//                    } else {
+//                    	
+//                    	JOptionPane.showMessageDialog(null, "Invalid Login Credentials","Login Error", JOptionPane.ERROR_MESSAGE);
+//                        passwordField.setText(null);
+//                        textField.setText(null);
+//                        
+//                    }
+//                } catch (SQLException sqlException) {
+//                    sqlException.printStackTrace();
+//                }
             }
 	                        
         });
