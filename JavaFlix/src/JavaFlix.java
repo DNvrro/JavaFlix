@@ -86,41 +86,43 @@ public class JavaFlix extends JFrame {
 		setFont(new Font("Arial Black", Font.PLAIN, 12));
 		setTitle("Welcome to JavaFlix!");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(400, 350, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
 		
-		JPanel LogIn = new JPanel();
-		LogIn.setBackground(Color.GRAY);
+		final JPanel LogIn = new JPanel();
+		LogIn.setBackground(Color.BLUE);
 		contentPane.add(LogIn, "name_72157132175147");
 		LogIn.setLayout(null);
+		LogIn.setVisible(true);
 		
-		JPanel User = new JPanel();
-		User.setBackground(Color.GRAY);
+		final JPanel User = new JPanel();
+		User.setBackground(Color.BLUE);
 		contentPane.add(User, "name_72157149030130");
 		User.setLayout(null);
+		User.setVisible(false);
 		
 		JPanel Movie = new JPanel();
-		Movie.setBackground(Color.GRAY);
+		Movie.setBackground(Color.BLUE);
 		contentPane.add(Movie, "name_72157164603025");
 		
 		JLabel lblNewLabel = new JLabel("JavaFlix");
 		lblNewLabel.setForeground(Color.YELLOW);
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 50));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(81, 6, 285, 56);
+		lblNewLabel.setBounds(77, 6, 285, 56);
 		LogIn.add(lblNewLabel);
 		
 		textField = new JTextField();
-		textField.setBounds(160, 91, 130, 26);
+		textField.setBounds(155, 91, 130, 26);
 		LogIn.add(textField);
 		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(160, 129, 130, 26);
+		passwordField.setBounds(155, 129, 130, 26);
 		LogIn.add(passwordField);
 		
 		JLabel lblUsername = new JLabel("Username:");
@@ -136,29 +138,45 @@ public class JavaFlix extends JFrame {
 		LogIn.add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("Log In");
-		btnNewButton.setBounds(189, 188, 71, 16);
+		btnNewButton.setBounds(184, 188, 71, 16);
 		LogIn.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				
 				String password = passwordField.getText();
-				String username = textField.getText();
+				String userName = textField.getText();
 				
-				if (password.contains("Daniel123") && username.contains("Daniel") ) {
-					passwordField.setText(null);
-					textField.setText(null);
-					User.setVisible(true);
-					LogIn.setVisible(false);
-					
-				} else {
-					JOptionPane.showMessageDialog(null, "Invalid Login Credentials","Login Error", JOptionPane.ERROR_MESSAGE);
-					passwordField.setText(null);
-					textField.setText(null);
-					
-					
-				}
-			}
+				try {
+                    Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/javaFlix",
+                        "root", "xxxx");
+
+                    PreparedStatement st = (PreparedStatement) connection
+                        .prepareStatement("Select username, password from user where username=? and password=?");
+
+                    st.setString(1, userName);
+                    st.setString(2, password);
+                    ResultSet rs = st.executeQuery();
+                    
+                    if (rs.next()) {
+                       
+                        passwordField.setText(null);
+                        textField.setText(null);
+                        User.setVisible(true);
+                        LogIn.setVisible(false);
+                        
+                    } else {
+                    	
+                    	JOptionPane.showMessageDialog(null, "Invalid Login Credentials","Login Error", JOptionPane.ERROR_MESSAGE);
+                        passwordField.setText(null);
+                        textField.setText(null);
+                        
+                    }
+                } catch (SQLException sqlException) {
+                    sqlException.printStackTrace();
+                }
+            }
+	                        
         });
 		
 	
@@ -167,7 +185,7 @@ public class JavaFlix extends JFrame {
 	
 		
 		JLabel lblPleaseLogIn = new JLabel("Please log in...");
-		lblPleaseLogIn.setBounds(174, 160, 101, 16);
+		lblPleaseLogIn.setBounds(169, 160, 101, 16);
 		LogIn.add(lblPleaseLogIn);
 		
 		
