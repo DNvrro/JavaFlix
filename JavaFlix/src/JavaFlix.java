@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Frame;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -24,6 +26,7 @@ import javax.swing.JDesktopPane;
 import java.awt.CardLayout;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 
 public class JavaFlix extends JFrame {
 
@@ -35,33 +38,33 @@ public class JavaFlix extends JFrame {
 	private JPanel Movie;
 	
 	 public static Movie movie1 = new Movie("The Shawshank Redemption","R", "Drama",
-	            "Two imprisoned men bond over a number of years, finding solace and " +
-	                    "eventual redemption through acts of common decency.", 142);
+	            "<html>Two imprisoned men bond over a number of years, finding solace and " +
+	                    "eventual redemption through acts of common decency.</html>", 142);
 	    public static Movie movie2 = new Movie("The Godfather", "R", "Crime,Drama",
-	            "The aging patriarch of an organized crime dynasty transfers control of his " +
-	                    "clandestine empire to his reluctant son.", 175);
+	            "<html>The aging patriarch of an organized crime dynasty transfers control of his " +
+	                    "clandestine empire to his reluctant son.</html>", 175);
 	    public static Movie movie3 = new Movie("The Godfather: Part II", "R", "Crime," +
 	            "Drama",
-	            "The early life and career of Vito Corleone in 1920s New York City is portrayed," +
-	                    " while his son, Michael, expands and tightens his grip on the family crime syndicate.",
+	            "<html>The early life and career of Vito Corleone in 1920s New York City is portrayed," +
+	                    " while his son, Michael, expands and tightens his grip on the family crime syndicate.</html>",
 	            222);
 	    public static Movie movie4 = new Movie("The Dark Knight", "PG-13","Action," +
 	            "Crime," +
-	            "Drama","When the menace known as the Joker wreaks havoc and chaos on the people of " +
+	            "Drama","<html>When the menace known as the Joker wreaks havoc and chaos on the people of " +
 	            "Gotham, " +
 	            "Batman must accept one of the greatest psychological and physical tests of his ability " +
-	            "to fight injustice.", 152 );
+	            "to fight injustice.</html>", 152 );
 	    public static Movie movie5 = new Movie("Pulp Fiction","R", "Crime,Drama",
-	            "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner " +
-	                    "bandits intertwine in four tales of violence and redemption.", 154);
+	            "<html>The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner " +
+	                    "bandits intertwine in four tales of violence and redemption.</html>", 154);
 	    public static Movie movie6 = new Movie("Joker","R", "Crime,Drama,Thriller",
-	            "In Gotham City, mentally-troubled comedian Arthur Fleck is disregarded and " +
+	            "<html>In Gotham City, mentally-troubled comedian Arthur Fleck is disregarded and " +
 	                    "mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. " +
-	                    "This path brings him face-to-face with his alter-ego: \"The Joker\".", 122);
+	                    "This path brings him face-to-face with his alter-ego: \"The Joker\".</html>", 122);
 	    public static Movie movie7 = new Movie("The Shining","R","Drama,Horror",
-	            "A family heads to an isolated hotel for the winter where a sinister presence influences " +
+	            "<html>A family heads to an isolated hotel for the winter where a sinister presence influences " +
 	                    "the father into violence, while his psychic son sees horrific forebodings from " +
-	                    "both past and future.",146);
+	                    "both past and future.</html>",146);
 
 	/**
 	 * Launch the application.
@@ -86,7 +89,7 @@ public class JavaFlix extends JFrame {
 		setFont(new Font("Arial Black", Font.PLAIN, 12));
 		setTitle("Welcome to JavaFlix!");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(400, 350, 450, 300);
+		setBounds(400, 350, 644, 396);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -108,37 +111,97 @@ public class JavaFlix extends JFrame {
 		JPanel Movie = new JPanel();
 		Movie.setBackground(Color.BLUE);
 		contentPane.add(Movie, "name_72157164603025");
+		Movie.setLayout(null);
+		
+		JLabel label = new JLabel("JavaFlix");
+		label.setBounds(6, 6, 91, 31);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setForeground(Color.YELLOW);
+		label.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
+		Movie.add(label);
+		
+		JLabel lblTitle = new JLabel("Title:");
+		lblTitle.setBounds(36, 49, 61, 16);
+		Movie.add(lblTitle);
+		
+		JLabel lblOutputtitle = new JLabel("OutputTitle");
+		lblOutputtitle.setBounds(80, 49, 240, 16);
+		Movie.add(lblOutputtitle);
+		
+		JLabel lblRating = new JLabel("Rating:");
+		lblRating.setBounds(344, 49, 61, 16);
+		Movie.add(lblRating);
+		
+		JLabel lblOutputrating = new JLabel("OutputRating");
+		lblOutputrating.setBounds(438, 49, 81, 16);
+		Movie.add(lblOutputrating);
+		
+		JLabel lblGenre = new JLabel("Genre:");
+		lblGenre.setBounds(36, 77, 61, 16);
+		Movie.add(lblGenre);
+		
+		JLabel lblOutputgenre = new JLabel("OutputGenre");
+		lblOutputgenre.setBounds(80, 77, 140, 16);
+		Movie.add(lblOutputgenre);
+		
+		JLabel lblDuration = new JLabel("Duration:");
+		lblDuration.setBounds(344, 77, 61, 16);
+		Movie.add(lblDuration);
+		
+		JLabel lblOutputduration = new JLabel("OutputDuration");
+		lblOutputduration.setBounds(438, 77, 61, 16);
+		Movie.add(lblOutputduration);
+		
+		JLabel lblSynopsis = new JLabel("Synopsis:");
+		lblSynopsis.setBounds(27, 123, 70, 16);
+		Movie.add(lblSynopsis);
+		
+		JLabel lblOutputsynopsis = new JLabel("<html>First line<br>Second line</html>");
+		lblOutputsynopsis.setVerticalAlignment(SwingConstants.TOP);
+		lblOutputsynopsis.setBounds(23, 145, 586, 91);
+		Movie.add(lblOutputsynopsis);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				User.setVisible(true);
+				Movie.setVisible(false);
+				
+			}
+		});
+		btnBack.setBounds(258, 308, 117, 29);
+		Movie.add(btnBack);
 		
 		JLabel lblNewLabel = new JLabel("JavaFlix");
 		lblNewLabel.setForeground(Color.YELLOW);
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 50));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(77, 6, 285, 56);
+		lblNewLabel.setBounds(174, 6, 285, 56);
 		LogIn.add(lblNewLabel);
 		
 		textField = new JTextField();
-		textField.setBounds(155, 91, 130, 26);
+		textField.setBounds(252, 77, 130, 26);
 		LogIn.add(textField);
 		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(155, 129, 130, 26);
+		passwordField.setBounds(252, 149, 130, 26);
 		LogIn.add(passwordField);
 		
 		JLabel lblUsername = new JLabel("Username:");
 		lblUsername.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
 		lblUsername.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblUsername.setBounds(61, 96, 87, 16);
+		lblUsername.setBounds(153, 80, 87, 16);
 		LogIn.add(lblUsername);
 		
 		JLabel lblNewLabel_1 = new JLabel("Password:");
 		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_1.setBounds(47, 134, 101, 16);
+		lblNewLabel_1.setBounds(139, 152, 101, 16);
 		LogIn.add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("Log In");
-		btnNewButton.setBounds(184, 188, 71, 16);
+		btnNewButton.setBounds(282, 221, 71, 16);
 		LogIn.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 
@@ -181,15 +244,6 @@ public class JavaFlix extends JFrame {
 	                        
         });
 		
-	
-		
-  
-	
-		
-		JLabel lblPleaseLogIn = new JLabel("Please log in...");
-		lblPleaseLogIn.setBounds(169, 160, 101, 16);
-		LogIn.add(lblPleaseLogIn);
-		
 		
 		
 		JLabel lblNewLabel_2 = new JLabel("JavaFlix");
@@ -215,11 +269,29 @@ public class JavaFlix extends JFrame {
 		listModel.addElement(movie7);
 		
 		JList list = new JList(listModel);
-		list.setBounds(38, 67, 370, 165);
+		list.setBounds(35, 67, 563, 232);
 		User.add(list);
 		
+		
 		JButton btnView = new JButton("View");
-		btnView.setBounds(164, 233, 117, 29);
+		btnView.addActionListener(new ActionListener() {
+			
+			
+			public void actionPerformed(ActionEvent e) {
+				Movie.setVisible(true);
+				User.setVisible(false);
+				
+				
+				lblOutputtitle.setText( ((Movie) list.getSelectedValue()).getTitle());
+				lblOutputrating.setText( ((Movie) list.getSelectedValue()).getRating());
+				lblOutputgenre.setText( ((Movie) list.getSelectedValue()).getGenre());
+				lblOutputduration.setText( ((Movie) list.getSelectedValue()).getDuration());
+				lblOutputsynopsis.setText( ((Movie) list.getSelectedValue()).getSynopsis());
+
+				
+			}
+		});
+		btnView.setBounds(258, 311, 117, 29);
 		User.add(btnView);
 		
 		

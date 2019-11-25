@@ -13,6 +13,32 @@ public class Movie {
         movieDuration = _movieDuration;
     }
 
+    public String getTitle() {
+    	
+    	return movieTitle;
+    }
+    
+   public String getRating() {
+	   
+	   return movieRating;
+	   
+   }
+   
+   public String getGenre() {
+	   
+	   return movieGenre;
+   }
+   
+   public String getSynopsis() {
+	   
+	   return movieSynopsis;
+   }
+   
+   public String getDuration() {
+	   String duration = movieDuration + " (min)";
+	   return duration;
+   }
+   
     public String toString() {
         String movieInfo = "Title: " + movieTitle + "\nRated: " + movieRating + "\nGenre: " +
                 movieGenre + "\nSynopsis: " + movieSynopsis + "\nDuration: " + movieDuration +
