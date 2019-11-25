@@ -209,37 +209,37 @@ public class JavaFlix extends JFrame {
 				
 				String password = passwordField.getText();
 				String userName = textField.getText();
-				User.setVisible(true);
-				LogIn.setVisible(false);
+//				User.setVisible(true);
+//				LogIn.setVisible(false);
 				
-//				try {
-//                    Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/javaFlix",
-//                        "root", "xxxx");
-//
-//                    PreparedStatement st = (PreparedStatement) connection
-//                        .prepareStatement("Select username, password from user where username=? and password=?");
-//
-//                    st.setString(1, userName);
-//                    st.setString(2, password);
-//                    ResultSet rs = st.executeQuery();
-//                    
-//                    if (rs.next()) {
-//                       
-//                        passwordField.setText(null);
-//                        textField.setText(null);
-//                        User.setVisible(true);
-//                        LogIn.setVisible(false);
-//                        
-//                    } else {
-//                    	
-//                    	JOptionPane.showMessageDialog(null, "Invalid Login Credentials","Login Error", JOptionPane.ERROR_MESSAGE);
-//                        passwordField.setText(null);
-//                        textField.setText(null);
-//                        
-//                    }
-//                } catch (SQLException sqlException) {
-//                    sqlException.printStackTrace();
-//                }
+				try {
+                    Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/javaFlix",
+                        "root", "xxxx");
+
+                    PreparedStatement st = (PreparedStatement) connection
+                        .prepareStatement("Select username, password from user where username=? and password=?");
+
+                    st.setString(1, userName);
+                    st.setString(2, password);
+                    ResultSet rs = st.executeQuery();
+                    
+                    if (rs.next()) {
+                       
+                        passwordField.setText(null);
+                        textField.setText(null);
+                        User.setVisible(true);
+                        LogIn.setVisible(false);
+                        
+                    } else {
+                    	
+                    	JOptionPane.showMessageDialog(null, "Invalid Login Credentials","Login Error", JOptionPane.ERROR_MESSAGE);
+                        passwordField.setText(null);
+                        textField.setText(null);
+                        
+                    }
+                } catch (SQLException sqlException) {
+                    sqlException.printStackTrace();
+                }
             }
 	                        
         });
@@ -291,8 +291,22 @@ public class JavaFlix extends JFrame {
 				
 			}
 		});
-		btnView.setBounds(258, 311, 117, 29);
+		btnView.setBounds(318, 311, 117, 29);
 		User.add(btnView);
+		
+		JButton btnNewButton_1 = new JButton("Exit");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JFrame frmLoginSystem = new JFrame("Exit");
+				if (JOptionPane.showConfirmDialog(frmLoginSystem, "Are you sure you want to leave?", "Login Systems", 
+						JOptionPane.YES_NO_OPTION)== JOptionPane.YES_NO_OPTION) {
+					System.exit(0);
+				}
+			}
+		});
+		btnNewButton_1.setBounds(189, 311, 117, 29);
+		User.add(btnNewButton_1);
 		
 		
 	}

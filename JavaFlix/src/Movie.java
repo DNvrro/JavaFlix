@@ -40,8 +40,7 @@ public class Movie {
    }
    
     public String toString() {
-        String movieInfo = "Title: " + movieTitle + ",\nRated: " + movieRating + ",\nGenre: " +
-                movieGenre;
+        String movieInfo = "Title: " + movieTitle ;
 
         return movieInfo;
     }
